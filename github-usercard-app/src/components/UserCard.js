@@ -3,10 +3,10 @@ import { Card, Container } from 'semantic-ui-react'
 import '../App.css';
 
 const UserCard = props => {
-
+  console.log('props', props)
   const extra = (
     <div>
-        <a href={props.user.email} />
+        <a href={props.user.repos_url} />
         <a href={props.user.html_url} />
     </div>
   )
@@ -21,7 +21,6 @@ const UserCard = props => {
             extra={extra}
         />
     </Container>
-    
   )
 }
 

@@ -18,6 +18,7 @@ const Followers = props => {
   })
 
   return (
+    console.log('followers', followers),
     <Card>
       {followers}
     </Card>

@@ -1,46 +1,95 @@
 import React from 'react';
 import axios from 'axios';
-import UserCard from './components/UserCard';
-import Followers from './components/Followers';
 
 class App extends React.Component {
   state = {
     user: {},
-    followers: []
+    followes: []
   }
 
   componentDidMount() {
-    axios
+    axios 
       .get('https://api.github.com/users/YenniLee')
       .then(res => {
-        console.log(res.data)
-        this.setState({user: res.data})
+        console.log('axios user response', res.data);
+        this.setState({
+          user: res.data
+        })
+        return res.data.followers_url;
       })
-      .catch(err => console.error("axios error", err))
-
-    axios
-    .get('https://api.github.com/users/YenniLee/followers')  
-    .then(res => {
-      console.log(res.data)
-      this.setState({followers: res.data})
-    })
-    .catch(err => console.error("follower axios err", err))
+      .then(followersUrl => {
+        axios
+        .get(followersUrl)
+        .then(res => {
+          console.log('nested axios request', res.data)//return an array of followers
+          this.setState({
+            followers: res.data
+          })
+        })
+      })
+      .catch(err => console.log('axios user error', err))
   }
-
-
 
   render() {
-    console.log('rendering...')
     return (
-      <div className="App">
-        <h1>GitHub User Profiles</h1>
-        <UserCard user={this.state.user} />
-        <h1>Followers</h1>
-        <Followers followerData={this.state.followers} />
-      </div>
-    );
+      <h1>App</h1>
+    )
   }
+};
+
   
-}
+
 
 export default App;
+
+
+
+
+
+// import React from 'react';
+// import axios from 'axios';
+// import UserCard from './components/UserCard';
+// import Followers from './components/Followers';
+
+// class App extends React.Component {
+//   state = {
+//     user: {},
+//     followers: []
+//   }
+
+//   componentDidMount() {
+//     axios
+//       .get('https://api.github.com/users/YenniLee')
+//       .then(res => {
+//         console.log(res.data)
+//         this.setState({user: res.data})
+//       })
+//       .catch(err => console.error("axios error", err))
+
+//     axios
+//     .get('https://api.github.com/users/YenniLee/followers')  
+//     .then(res => {
+//       this.setState({followers: res.data})
+//       console.log('followers', res.data)
+
+//     })
+//     .catch(err => console.error("follower axios err", err))
+//   }
+
+
+
+//   render() {
+//     console.log('rendering...')
+//     return (
+//       <div className="App">
+//         <h1>GitHub User Profiles</h1>
+//         <UserCard user={this.state.user} />
+//         <h1>Followers</h1>
+//         <Followers followerData={this.state.followers} />
+//       </div>
+//     );
+//   }
+  
+// }
+
+// export default App;
