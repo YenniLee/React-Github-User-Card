@@ -12,13 +12,20 @@ html {
 
 .followerContainer, .userCard {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   align-content: center;
   align-items: center;
   justify-content: space-evenly;
-  width: 80%;
+  width: 450px;
   padding: 10px;
   border: 2px solid #5E259B;
+  margin: 20px auto;
+  background: #FAFAFA;
 }
 
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}

@@ -1,26 +1,53 @@
-import React from 'react'
-import { Card } from 'semantic-ui-react'
-import '../App.css';
-const Followers = props => {
+import React from 'react';
+import { Card, Container } from 'semantic-ui-react';
 
+
+const Followers = props => {
   const followers = props.followerData.map(follower => {
     return (
-        <Card
-        className="followerContainer"
-           key={follower.id}
-           image={follower.avatar_url}
-           alt={follower.login}
-           header={follower.login}
-           meta={<a href={follower.html_url}>Profile</a>}
-        />
+      <Card className='followerContainer'
+        key={follower.id}
+        image={follower.avatar_url}
+        header={follower.login}
+        meta={<a href={follower.html_url}>Profile</a>}
+      />
     )
-  })
-
+  });
   return (
-    <Card>
-      {followers}
-    </Card>
+    <Container>
+      <h2>Followers</h2>
+      <Card>{followers}</Card>
+    </Container>
   )
 }
 
 export default Followers;
+
+// import React from 'react'
+// import { Card } from 'semantic-ui-react'
+// import '../App.css';
+
+// const Followers = props => {
+
+//   const followers = props.followerData.map(follower => {
+//     return (
+//         <Card
+//         className="followerContainer"
+//            key={follower.id}
+//            image={follower.avatar_url}
+//            alt={follower.login}
+//            header={follower.login}
+//            meta={<a href={follower.html_url}>Profile</a>}
+//         />
+//     )
+//   })
+
+//   return (
+//     console.log('followers', followers),
+//     <Card>
+//       {followers}
+//     </Card>
+//   )
+// }
+
+// export default Followers;
