@@ -1,10 +1,15 @@
 import React from 'react';
 import axios from 'axios';
+import './App.css';
+import TopNav from './components/TopNav';
+import User from './components/UserCard';
+import Followers from './components/Followers';
+
 
 class App extends React.Component {
   state = {
     user: {},
-    followes: []
+    followers: []
   }
 
   componentDidMount() {
@@ -32,7 +37,11 @@ class App extends React.Component {
 
   render() {
     return (
-      <h1>App</h1>
+      <div className='app'>
+        <TopNav />
+        <User user={this.state.user}/>
+        <Followers followerData={this.state.followers} />
+      </div>
     )
   }
 };
