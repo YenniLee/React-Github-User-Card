@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card } from 'semantic-ui-react';
+import { Card, Container } from 'semantic-ui-react';
 
 
 const Followers = props => {
@@ -14,7 +14,10 @@ const Followers = props => {
     )
   });
   return (
-    <Card>{followers}</Card>
+    <Container>
+      <h2>Followers</h2>
+      <Card>{followers}</Card>
+    </Container>
   )
 }
 

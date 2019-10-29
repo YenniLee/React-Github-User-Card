@@ -11,6 +11,7 @@ const User = props => {
 
   return (
     <Container>
+      <h2>User</h2>
       <Card className='userCard'
         header={props.user.name}
         image={props.user.avatar_url}

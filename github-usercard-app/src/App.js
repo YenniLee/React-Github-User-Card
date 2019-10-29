@@ -39,8 +39,10 @@ class App extends React.Component {
     return (
       <div className='app'>
         <TopNav />
-        <User user={this.state.user}/>
-        <Followers followerData={this.state.followers} />
+        <div className='cards'>
+          <User user={this.state.user}/>
+          <Followers followerData={this.state.followers} />
+        </div>
       </div>
     )
   }
