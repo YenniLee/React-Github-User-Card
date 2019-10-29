@@ -1,6 +1,7 @@
 import React from 'react'
 import { Card } from 'semantic-ui-react'
 import '../App.css';
+
 const Followers = props => {
 
   const followers = props.followerData.map(follower => {

@@ -35,6 +35,7 @@ class App extends React.Component {
       <div className="App">
         <h1>GitHub User Profiles</h1>
         <UserCard user={this.state.user} />
+        <h1>Followers</h1>
         <Followers followerData={this.state.followers} />
       </div>
     );

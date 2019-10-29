@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, Container } from 'semantic-ui-react'
+import '../App.css';
 
 const UserCard = props => {
 
