@@ -18,7 +18,7 @@ class App extends React.Component {
     axios 
       .get(`https://api.github.com/users/${this.state.userName}`)
       .then(res => {
-        console.log('axios user response', res.data);
+        // console.log('axios user response', res.data);
         this.setState({
           user: res.data
         })
@@ -28,7 +28,7 @@ class App extends React.Component {
         axios
         .get(followersUrl)
         .then(res => {
-          console.log('nested axios request', res.data)//return an array of followers
+          // console.log('nested axios request', res.data)//return an array of followers
           this.setState({
             followers: res.data
           })
@@ -56,7 +56,7 @@ class App extends React.Component {
       axios 
       .get(`https://api.github.com/users/${this.state.userName}`)
       .then(res => {
-        console.log('axios user response', res.data);
+        // console.log('axios user response', res.data);
         this.setState({
           user: res.data
         })
@@ -66,14 +66,13 @@ class App extends React.Component {
         axios
         .get(followersUrl)
         .then(res => {
-          console.log('nested axios request', res.data)//return an array of followers
+          // console.log('nested axios request', res.data)//return an array of followers
           this.setState({
             followers: res.data
           })
         })
       })
       .catch(err => console.log('axios user error', err))
-    
    }
   };
 
@@ -87,7 +86,7 @@ class App extends React.Component {
         />
         <div className='cards'>
           <User user={this.state.user}/>
-          <Followers followerData={this.state.followers} handleClick={this.handleClick} />
+          <Followers followerData={this.state.followers} />
         </div>
       </div>
     )
