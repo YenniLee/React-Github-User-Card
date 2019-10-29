@@ -9,12 +9,14 @@ import Followers from './components/Followers';
 class App extends React.Component {
   state = {
     user: {},
-    followers: []
+    followers: [],
+    searchInput: '',
+    userName: 'YenniLee'
   }
 
   componentDidMount() {
     axios 
-      .get('https://api.github.com/users/YenniLee')
+      .get(`https://api.github.com/users/${this.state.userName}`)
       .then(res => {
         console.log('axios user response', res.data);
         this.setState({
@@ -35,13 +37,57 @@ class App extends React.Component {
       .catch(err => console.log('axios user error', err))
   }
 
+  handleChange = e => {
+    this.setState({
+      searchInput: e.target.value
+    })
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    this.setState({
+      userName: (this.state.searchInput === '' ? 'YenniLee' : this.state.searchInput)
+    })
+  };
+  
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.userName !== this.state.userName) {
+      axios 
+      .get(`https://api.github.com/users/${this.state.userName}`)
+      .then(res => {
+        console.log('axios user response', res.data);
+        this.setState({
+          user: res.data
+        })
+        return res.data.followers_url;
+      })
+      .then(followersUrl => {
+        axios
+        .get(followersUrl)
+        .then(res => {
+          console.log('nested axios request', res.data)//return an array of followers
+          this.setState({
+            followers: res.data
+          })
+        })
+      })
+      .catch(err => console.log('axios user error', err))
+    
+   }
+  };
+
   render() {
     return (
       <div className='app'>
-        <TopNav />
+        <TopNav 
+          handleChange={this.handleChange} 
+          submitInput={this.state.submitInput} 
+          handleSubmit={this.handleSubmit} 
+        />
         <div className='cards'>
           <User user={this.state.user}/>
-          <Followers followerData={this.state.followers} />
+          <Followers followerData={this.state.followers} handleClick={this.handleClick} />
         </div>
       </div>
     )

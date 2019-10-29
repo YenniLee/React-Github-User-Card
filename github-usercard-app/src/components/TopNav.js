@@ -1,5 +1,4 @@
 import React from 'react';
-import { Input, Button } from 'semantic-ui-react'
 import styled from 'styled-components';
 
 const Header = styled.header`
@@ -13,14 +12,19 @@ const Search = styled.div`
     justify-content: flex-end;
 `;
 
-const TopNav = () => {
+const TopNav = ({ handleChange, searchInput, handleSubmit }) => {
     return (
         <Header>
             <h1>GitHub UserCard React App</h1>
-            <Search class="ui icon input">
-                <Input type="text" placeholder="Search Username" />
-                <Button>Search</Button>
-            </Search>   
+            <form onSubmit={handleSubmit}>
+                <input 
+                    type="text" 
+                    placeholder="Search Username" 
+                    onChange={handleChange} 
+                    value={searchInput} 
+                />
+                <button>Search</button>
+            </form>   
         </Header>
     )
 }
